@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Brain, Heart, TrendingUp, TrendingDown } from 'lucide-react';
 import { analyzeSentiment } from '../services/api';
-import Suggestions from './Suggestions';
 
 const SentimentAnalyzer = () => {
   const [text, setText] = useState('');
@@ -88,20 +87,17 @@ const SentimentAnalyzer = () => {
       )}
 
       {result && (
-        <>
-          <div className={`result-card ${getSentimentColor(result.sentiment)}`}>
-            <div className="result-header">
-              {getSentimentIcon(result.sentiment)}
-              <span className="result-sentiment">
-                {result.sentiment === 'POSITIVE' ? 'Positive' : 'Negative'} Sentiment
-              </span>
-            </div>
-            <div className="result-confidence">
-              Confidence: {(result.confidence * 100).toFixed(1)}%
-            </div>
+        <div className={`result-card ${getSentimentColor(result.sentiment)}`}>
+          <div className="result-header">
+            {getSentimentIcon(result.sentiment)}
+            <span className="result-sentiment">
+              {result.sentiment === 'POSITIVE' ? 'Positive' : 'Negative'} Sentiment
+            </span>
           </div>
-          <Suggestions sentiment={result.sentiment} confidence={result.confidence} />
-        </>
+          <div className="result-confidence">
+            Confidence: {(result.confidence * 100).toFixed(1)}%
+          </div>
+        </div>
       )}
 
       {history.length > 0 && (

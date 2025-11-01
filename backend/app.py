@@ -3,7 +3,7 @@ from flask_cors import CORS
 from transformers import pipeline
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "http://127.0.0.1:3000"]}})
+CORS(app, resources={r"/*": {"origins": "*"}})  # allow all origins
 
 # Load HuggingFace sentiment analysis pipeline
 sentiment_pipeline = pipeline("sentiment-analysis")
